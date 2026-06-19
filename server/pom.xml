@@ -11,7 +11,7 @@
         This is the top-level POM for the entire multi-module project.
         packaging=pom means this module produces NO JAR/WAR
     -->
-  <groupId>com.zosh</groupId>
+  <groupId>com.thanhdoan</groupId>
   <artifactId>airline-microservice</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>

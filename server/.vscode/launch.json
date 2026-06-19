@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "AirlineCoreServiceApplication",
+      "request": "launch",
+      "mainClass": "com.thanhdoan.AirlineCoreServiceApplication",
+      "projectName": "airline-core-service"
+    },
+    {
+      "type": "java",
       "name": "Current File",
       "request": "launch",
       "mainClass": "${file}"
