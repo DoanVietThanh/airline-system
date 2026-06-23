@@ -23,14 +23,14 @@ public class AuthController {
 
   @PostMapping("/signup")
   public ResponseEntity<AuthResponse> signup(
-      @RequestBody @Valid UserDto req) throws Exception {
+      @Valid @RequestBody UserDto req) throws Exception {
     AuthResponse response = authService.signup(req);
     return ResponseEntity.ok(response);
   }
 
   @PostMapping("/login")
   public ResponseEntity<AuthResponse> login(
-      @RequestBody @Valid LoginRequest req) throws Exception {
+      @Valid @RequestBody LoginRequest req) throws Exception {
     AuthResponse response = authService.login(req.getEmail(), req.getPassword());
     return ResponseEntity.ok(response);
   }

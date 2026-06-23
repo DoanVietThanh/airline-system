@@ -2,9 +2,6 @@ package com.thanhdoan.model;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import com.thanhdoan.enums.UserRole;
 
 import jakarta.persistence.Column;
