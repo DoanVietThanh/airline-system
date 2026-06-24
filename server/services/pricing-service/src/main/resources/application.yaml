@@ -1,0 +1,22 @@
+server:
+  port: 5005
+
+spring:
+  application:
+    name: pricing-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/yt_airline_pricing_db
+    username: root
+    password: "" # nếu root không có password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  pattern:
+    console: ${LOGPATTERN_CONSOLE:%green(%d{HH:mm:ss.SSS}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n}

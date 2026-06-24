@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PricingServiceApplication",
+      "request": "launch",
+      "mainClass": "com.thanhdoan.PricingServiceApplication",
+      "projectName": "pricing-service"
+    },
+    {
+      "type": "java",
       "name": "AirlineCoreServiceApplication",
       "request": "launch",
       "mainClass": "com.thanhdoan.AirlineCoreServiceApplication",
