@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SeatServiceApplication",
+      "request": "launch",
+      "mainClass": "com.thanhdoan.SeatServiceApplication",
+      "projectName": "seat-service"
+    },
+    {
+      "type": "java",
       "name": "PricingServiceApplication",
       "request": "launch",
       "mainClass": "com.thanhdoan.PricingServiceApplication",

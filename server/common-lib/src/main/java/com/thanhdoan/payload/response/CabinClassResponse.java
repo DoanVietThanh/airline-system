@@ -1,0 +1,32 @@
+package com.thanhdoan.payload.response;
+
+import java.time.Instant;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class CabinClassResponse {
+  private Long id;
+  // private CabinClassType name;
+  private String name;
+  private String code;
+  private String description;
+  private Long aircraftId;
+  private Integer displayOrder;
+  private Boolean isActive;
+  private Boolean isBookable;
+  private Integer typicalSeatPitch;
+  private Integer typicalSeatWidth;
+  private String seatType;
+
+  private SeatMapResponse seatMap;
+
+  private Instant createdAt;
+  private Instant updatedAt;
+}

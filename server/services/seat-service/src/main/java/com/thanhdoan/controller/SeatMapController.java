@@ -1,0 +1,57 @@
+package com.thanhdoan.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.thanhdoan.payload.request.SeatMapRequest;
+import com.thanhdoan.payload.response.SeatMapResponse;
+import com.thanhdoan.service.SeatMapService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/seat-maps")
+public class SeatMapController {
+
+  private final SeatMapService seatMapService;
+
+  @PostMapping
+  public ResponseEntity<SeatMapResponse> createSeatMap(@Valid @RequestBody SeatMapRequest request,
+      @RequestHeader("X-Airline-id") Long airlineId) throws Exception {
+    return ResponseEntity.status(HttpStatus.CREATED).body(seatMapService.createSeatMap(airlineId, request));
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<SeatMapResponse> getSeatMapById(@PathVariable Long id) throws Exception {
+    return ResponseEntity.ok(seatMapService.getSeatMapById(id));
+  }
+
+  @GetMapping("/cabin-class/{cabinClassId}")
+  public ResponseEntity<SeatMapResponse> getSeatMapByCabinClassId(@PathVariable Long cabinClassId) throws Exception {
+    return ResponseEntity.ok(seatMapService.getSeatMapByCabinClassId(cabinClassId));
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<SeatMapResponse> updateSeatMap(@PathVariable Long id,
+      @Valid @RequestBody SeatMapRequest request) throws Exception {
+    return ResponseEntity.ok(seatMapService.updateSeatMap(id, request));
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteSeatMap(@PathVariable Long id) throws Exception {
+    seatMapService.deleteSeatMap(id);
+    return ResponseEntity.noContent().build();
+  }
+}
