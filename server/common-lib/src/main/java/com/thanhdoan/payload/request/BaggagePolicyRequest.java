@@ -1,43 +1,55 @@
-package com.thanhdoan.payload.response;
+package com.thanhdoan.payload.request;
 
-import java.time.Instant;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class BaggagePolicyResponse {
+public class BaggagePolicyRequest {
 
-  private Long id;
+  @NotBlank(message = "Name is required")
   private String name;
+
+  @NotNull(message = "Fare ID is required")
+  private Long fareId;
+
   private String description;
 
-  // Cabin baggage
+  @PositiveOrZero
   private Double cabinBaggageMaxWeight;
+
+  @PositiveOrZero
   private Integer cabinBaggagePieces;
+
+  @PositiveOrZero
   private Double cabinBaggageWeightPerPiece;
+
+  @PositiveOrZero
   private Integer cabinBaggageMaxDimension;
 
   // Check-in baggage
+  @PositiveOrZero
   private Double checkInBaggageMaxWeight;
+
+  @PositiveOrZero
   private Integer checkInBaggagePieces;
+
+  @PositiveOrZero
   private Double checkInBaggageWeightPerPiece;
+
+  @PositiveOrZero
   private Integer freeCheckedBagsAllowance;
 
   // Benefits
   private Boolean priorityBaggage;
   private Boolean extraBaggageAllowance;
 
-  // Relationships
   private Long airlineId;
-  private Long fareId;
-
-  // Audit
-  private Instant createdAt;
-  private Instant updatedAt;
 }

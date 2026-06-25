@@ -13,6 +13,7 @@ import com.thanhdoan.embeddable.PremiumServiceBenefits;
 import com.thanhdoan.embeddable.SeatBenefits;
 import com.thanhdoan.enums.CabinClassType;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -68,6 +70,12 @@ public class Fare {
   private Double currentPrice;
 
   private String fareLabel;
+
+  @OneToOne(mappedBy = "fare", cascade = CascadeType.ALL, orphanRemoval = true)
+  private FareRules fareRules;
+
+  @OneToOne(mappedBy = "fare", cascade = CascadeType.ALL, orphanRemoval = true)
+  private BaggagePolicy baggagePolicy;
 
   @Embedded
   @Builder.Default

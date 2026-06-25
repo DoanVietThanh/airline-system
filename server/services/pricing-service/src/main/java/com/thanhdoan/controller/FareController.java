@@ -54,13 +54,11 @@ public class FareController {
         .body(fareService.getFaresByFlightIdAndCabinCLassId(flightId, cabinClassId));
   }
 
-  // getFaresByIds
   @GetMapping("/batch-by-ids")
   public ResponseEntity<Map<Long, FareResponse>> getFaresByIds(@PathVariable List<Long> ids) throws Exception {
     return ResponseEntity.status(HttpStatus.OK).body(fareService.getFaresByIds(ids));
   }
 
-  // getLowestFarePerFlight
   @GetMapping("/search")
   public ResponseEntity<Map<Long, FareResponse>> getLowestFarePerFlight(@RequestBody List<Long> flightIds,
       @RequestParam Long cabinClassId) throws Exception {
