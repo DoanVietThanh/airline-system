@@ -1,4 +1,4 @@
-package com.thanhdoan.payload.response;
+package com.thanhdoan.payload.request;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SeatResponse {
-  private Long id;
+public class SeatInstanceRequest {
   private String seatNumber;
   private Integer seatRow;
   private String columnLetter;

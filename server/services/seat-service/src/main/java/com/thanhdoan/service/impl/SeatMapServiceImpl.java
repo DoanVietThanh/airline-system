@@ -10,6 +10,7 @@ import com.thanhdoan.payload.response.SeatMapResponse;
 import com.thanhdoan.repository.CabinClassRepository;
 import com.thanhdoan.repository.SeatMapRepository;
 import com.thanhdoan.service.SeatMapService;
+import com.thanhdoan.service.SeatService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,7 @@ public class SeatMapServiceImpl implements SeatMapService {
 
   private final SeatMapRepository seatMapRepository;
   private final CabinClassRepository cabinClassRepository;
+  private final SeatService seatService;
 
   @Override
   public SeatMapResponse createSeatMap(Long airlineId, SeatMapRequest request) throws Exception {
@@ -29,8 +31,9 @@ public class SeatMapServiceImpl implements SeatMapService {
     CabinClass cabinClass = cabinClassRepository.findById(request.getCabinClassId())
         .orElseThrow(() -> new Exception("Cabin class not found"));
     SeatMap seatMap = SeatMapMapper.toEntity(request, cabinClass);
-    seatMapRepository.save(seatMap);
-    return SeatMapMapper.toResponse(seatMap);
+    SeatMap savedSeatMap = seatMapRepository.save(seatMap);
+    seatService.generateSeats(savedSeatMap.getId());
+    return SeatMapMapper.toResponse(savedSeatMap);
   }
 
   @Override

@@ -1,5 +1,6 @@
 package com.thanhdoan.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,8 +12,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,30 +25,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class SeatMap {
-
+public class FlightInstanceCabin {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(nullable = false)
-  private String name;
+  private Long flightInstanceId;
 
-  private Integer totalRows;
-
-  @Column(nullable = false)
-  private Integer rightSeatsPerRow;
-
-  @Column(nullable = false)
-  private Integer leftSeatsPerRow;
-
-  @Column(nullable = false)
-  private Long airlineId;
-
-  @OneToMany(mappedBy = "seatMap", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Seat> seats;
-
-  @OneToOne
+  @ManyToOne
   private CabinClass cabinClass;
 
+  @Column(nullable = false)
+  private Integer totalSeats;
+
+  @Builder.Default
+  private Integer bookedSeats = 0;
+
+  @OneToMany(mappedBy = "flightInstanceCabin", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
+  private List<SeatInstance> seats = new ArrayList<>();
+
+  public Integer getAvailableSeats() {
+    return totalSeats - bookedSeats;
+  }
 }

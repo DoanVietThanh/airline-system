@@ -1,6 +1,7 @@
 package com.thanhdoan.mapper;
 
 import com.thanhdoan.model.CabinClass;
+import com.thanhdoan.model.SeatMap;
 import com.thanhdoan.payload.request.CabinClassRequest;
 import com.thanhdoan.payload.response.CabinClassResponse;
 
@@ -25,7 +26,7 @@ public class CabinClassMapper {
   }
 
   // toResponse
-  public static CabinClassResponse toResponse(CabinClass entity) {
+  public static CabinClassResponse toResponse(CabinClass entity, SeatMap seatMap) {
     if (entity == null) {
       return null;
     }
@@ -35,7 +36,7 @@ public class CabinClassMapper {
         .code(entity.getCode())
         .description(entity.getDescription())
         .aircraftId(entity.getAircraftId())
-        // .seatMap(SeatMapMapper.toResponse(entity.getSeatMap()))
+        .seatMap(seatMap != null ? SeatMapMapper.toResponse(seatMap) : null)
         .displayOrder(entity.getDisplayOrder())
         .isActive(entity.getIsActive())
         .isBookable(entity.getIsBookable())
