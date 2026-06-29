@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "AncillaryServiceApplication",
+      "request": "launch",
+      "mainClass": "com.thanhdoan.AncillaryServiceApplication",
+      "projectName": "ancillary-service"
+    },
+    {
+      "type": "java",
       "name": "SeatServiceApplication",
       "request": "launch",
       "mainClass": "com.thanhdoan.SeatServiceApplication",
