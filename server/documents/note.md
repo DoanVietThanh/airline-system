@@ -7,3 +7,5 @@
 
   create database yt_airline_location_db;
 ```
+
+Booking Service orchestrates flight bookings and manages Booking, Passenger, and Ticket records

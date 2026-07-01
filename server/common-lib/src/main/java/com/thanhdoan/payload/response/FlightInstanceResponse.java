@@ -18,6 +18,7 @@ public class FlightInstanceResponse {
   private Long id;
   private Long flightId;
   private String flightNumber;
+
   private Long airlineId;
   private String airlineName;
   private String airlineLogo;
@@ -28,6 +29,7 @@ public class FlightInstanceResponse {
   private AirportResponse arrivalAirport;
   private LocalDateTime departureDateTime;
   private LocalDateTime arrivalDateTime;
+
   private String formattedDuration;
   private Integer totalSeats;
   private Integer availableSeats;
